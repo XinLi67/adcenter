@@ -19,6 +19,8 @@ func SetupRoute(router *gin.Engine) {
 	//  注册 API 路由
 	routes.RegisterAPIRoutes(router)
 
+	// 注册 ADMIN 路由
+
 	//  配置 404 路由
 	setup404Handler(router)
 }

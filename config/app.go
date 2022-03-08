@@ -30,6 +30,9 @@ func init() {
 
 			// API 域名，未设置的话所有 API URL 加 api 前缀，如 http://domain.com/api/v1/users
 			"api_domain": config.Env("API_DOMAIN"),
+
+			// ADMIN域名，未设置的话所有 ADMIN URL 加 admin 前缀，如 http://domain.com/admin/v1/users
+			"admin_domain": config.Env("ADMIN_DOMAIN"),
 		}
 	})
 }
