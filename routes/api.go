@@ -21,6 +21,12 @@ func RegisterAPIRoutes(r *gin.Engine) {
 		v1 = r.Group("/v1")
 	}
 
+	post := new(controllers.PostsController)
+	v1.GET("/posts/:id", post.Show)
+	v1.POST("/posts", post.Store)
+	v1.POST("/posts/:id/update", post.Update)
+	v1.POST("/posts/:id/delete", post.Delete)
+
 	// 全局限流中间件：每小时限流。这里是所有 API （根据 IP）请求加起来。
 	// 作为参考 Github API 每小时最多 60 个请求（根据 IP）。
 	// 测试时，可以调高一点。
