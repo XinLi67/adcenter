@@ -5,6 +5,7 @@ import (
 	"adcenter/app/models"
 	"adcenter/app/models/role"
 	"adcenter/pkg/database"
+	"adcenter/pkg/hash"
 )
 
 type AdminUser struct {
@@ -35,4 +36,9 @@ func (adminUser *AdminUser) Save() (rowsAffected int64) {
 func (adminUser *AdminUser) Delete() (rowsAffected int64) {
 	result := database.DB.Delete(&adminUser)
 	return result.RowsAffected
+}
+
+// ComparePassword 密码是否正确
+func (adminUserModel *AdminUser) ComparePassword(_password string) bool {
+	return hash.BcryptCheck(_password, adminUserModel.Password)
 }
