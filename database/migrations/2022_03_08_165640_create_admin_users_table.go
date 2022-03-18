@@ -2,6 +2,7 @@ package migrations
 
 import (
 	"adcenter/app/models"
+	"adcenter/app/models/role"
 	"adcenter/pkg/migrate"
 	"database/sql"
 
@@ -13,11 +14,15 @@ func init() {
 	type AdminUser struct {
 		models.BaseModel
 
-		Name     string `gorm:"column:name;type:varchar(60);not null;index"`
-		Username string `gorm:"column:username;type:varchar(60);not null"`
-		Email    string `gorm:"column:email;type:varchar(255);index;default:null"`
-		Phone    string `gorm:"column:phone;type:varchar(20);index;default:null"`
-		Password string `gorm:"column:password;type:varchar(255)"`
+		Name         string      `gorm:"type:varchar(60);column:name"`
+		Username     string      `gorm:"type:varchar(60);column:user_name"`
+		DepartmentId uint64      `gorm:"type:bigint unsigned;column:department_id"`
+		Gender       uint64      `gorm:"type:tinyint unsigned;column:gender;"`
+		Email        string      `gorm:"type:varchar(128);column:email;"`
+		Phone        string      `gorm:"type:varchar(20);column:phone;"`
+		Password     string      `gorm:"type:varchar(128);column:password;"`
+		Status       uint64      `gorm:"type:tinyint unsigned;column:status"`
+		Role         []role.Role `gorm:"many2many:user_role_rel"`
 
 		models.CommonTimestampsField
 	}

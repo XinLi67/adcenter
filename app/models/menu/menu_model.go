@@ -9,12 +9,16 @@ import (
 type Menu struct {
 	models.BaseModel
 
-	ParentId  int64  `gorm:"column:parent_id;type:bigint unsigned;not null;index"`
-	Icon      string `gorm:"column:icon;type:varchar(255);null"`
-	Uri       string `gorm:"column:uri;type:varchar(255);null"`
-	Name      string `gorm:"column:name;type:varchar(60);not null;index"`
-	GuardName string `gorm:"column:guard_name;type:varchar(60);not null;default:admin"`
-	Sequence  int64  `gorm:"column:sequence;type:int;null"`
+	// Put fields in here
+	// FIXME()
+	MenuName       string `gorm:"type:varchar(60);column:menu_name"`
+	ParentId       uint64 `gorm:"type:smallint unsigned;column:parent_id"`
+	Icon           string `gorm:"type:varchar(60);column:icon"`
+	Uri            string `gorm:"type:varchar(255);column:uri"`
+	IsLink         uint64 `gorm:"type:tinyint unsigned;column:is_link"`
+	PermissionName string `gorm:"type:varchar(60);column:permission_name"`
+	GuardName      string `gorm:"type:varchar(60);column:guard_name"`
+	Sequence       uint64 `gorm:"type:smallint unsigned;column:sequence"`
 
 	models.CommonTimestampsField
 }

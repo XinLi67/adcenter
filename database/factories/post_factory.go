@@ -16,7 +16,7 @@ func MakePosts(count int) []post.Post {
 	for i := 0; i < count; i++ {
 		postModel := post.Post{
 			//这里需要添加内容
-			Title:   faker.Word(),
+			Title:   faker.Name(),
 			Content: faker.Paragraph(),
 		}
 		objs = append(objs, postModel)
